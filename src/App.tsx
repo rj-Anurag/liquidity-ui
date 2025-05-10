@@ -1,11 +1,15 @@
 
 import './App.css'
+import { Home } from './components/Home'
+import { NavHeader } from './components/Navbar'
 
 function App() {
  return (
- <div className='bg-teal-400'>
-  Hello
- </div>
+<div>
+<NavHeader/>
+<Home/>
+</div>
+
  )
 }
 
