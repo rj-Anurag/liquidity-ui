@@ -172,7 +172,7 @@ export const DraggableCardBody = ({
         style={{
           opacity: glareOpacity,
         }}
-        className="pointer-events-none absolute inset-0 select-none " 
+        className="pointer-events-none absolute inset-0 select-none "
       />
     </motion.div>
   );
