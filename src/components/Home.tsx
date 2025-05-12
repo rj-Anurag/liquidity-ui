@@ -5,6 +5,8 @@ import {
 import { Button } from "@radix-ui/themes";
 import { WalletMinimal } from "lucide-react";
 import { PointerHighlight } from "./ui/pointer-highlight";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 
 export function Home() {
   const items = [
@@ -52,12 +54,15 @@ export function Home() {
     },
   ];
 
+  const { connected, publicKey, disconnect } = useWallet();
+  const { setVisible } = useWalletModal();
+
   return (
     <section
       className="relative flex h-[800px] w-full flex-col items-center border border-dashed border-[#242424] max-w-screen-2xl mx-auto"
     >
       <div className="max-w-full py-10 text-3xl md:text-6xl font-bold tracking-tight text-white text-left pr-40">
-      Instant Liquidity, Real  <PointerHighlight>Utility</PointerHighlight>
+        Instant Liquidity, Real  <PointerHighlight>Utility</PointerHighlight>
       </div>
       <div className="relative w-full max-w-screen-2xl">
         <DraggableCardContainer className="relative flex h-[500px] w-full items-center justify-center overflow-clip">
@@ -76,8 +81,21 @@ export function Home() {
         </DraggableCardContainer>
 
         <div className="flex justify-center">
-          <Button className="flex items-center bg-white text-black hover:bg-gray-200 transition-colors rounded-2xl p-3 font-bold cursor-pointer">
-            <WalletMinimal className="mr-2 h-4 w-4" /> Connect Wallet
+          <Button
+            onClick={connected ? disconnect : () => setVisible(true)}
+            className="flex items-center bg-white text-black hover:bg-gray-200 transition-colors rounded-2xl p-3 font-bold cursor-pointer"
+          >
+            <WalletMinimal className="mr-2 h-4 w-4" />
+            {connected ? (
+              <>
+                Disconnect
+                <span className="ml-2 text-black font-mono text-xs">
+                  {publicKey?.toBase58().slice(0, 4)}...{publicKey?.toBase58().slice(-4)}
+                </span>
+              </>
+            ) : (
+              <>Connect Wallet</>
+            )}
           </Button>
         </div>
       </div>
