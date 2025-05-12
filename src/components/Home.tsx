@@ -1,8 +1,10 @@
-
 import {
   DraggableCardBody,
   DraggableCardContainer,
 } from "@/components/ui/draggable-card";
+import { Button } from "@radix-ui/themes";
+import { WalletMinimal } from "lucide-react";
+import { PointerHighlight } from "./ui/pointer-highlight";
 
 export function Home() {
   const items = [
@@ -49,27 +51,36 @@ export function Home() {
       className: "absolute top-8 left-[30%] rotate-[4deg]",
     },
   ];
+
   return (
     <section
-  className="border-b border-dashed w-full h-[700px] p-3  mx-auto border-l border-r max-w-screen-2xl"
-  style={{ borderColor: "#242424" }}
->
-    
-    <DraggableCardContainer className="relative flex min-h-screen w-full items-center justify-center overflow-clip " >
-      <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
-      Mint it. Hold it. Flex it
-      </p>
-      {items.map((item) => (
-        <DraggableCardBody className={item.className}>
-          <img
-            src={item.image}
-            alt={item.title}
-            className="pointer-events-none relative z-10 h-80 w-80 object-cover rounded-2xl"
-          />
+      className="relative flex h-[800px] w-full flex-col items-center border border-dashed border-[#242424] max-w-screen-2xl mx-auto"
+    >
+      <div className="max-w-full py-10 text-3xl md:text-6xl font-bold tracking-tight text-white text-left pr-40">
+        The best way to grow is to <PointerHighlight>collaborate</PointerHighlight>
+      </div>
+      <div className="relative w-full max-w-screen-2xl">
+        <DraggableCardContainer className="relative flex h-[500px] w-full items-center justify-center overflow-clip">
+          <p className="absolute top-1/2 mx-auto max-w-sm -translate-y-3/4 text-center text-2xl font-black text-neutral-400 md:text-4xl dark:text-neutral-800">
+            Mint it. Hold it. Flex it
+          </p>
+          {items.map((item, index) => (
+            <DraggableCardBody key={index} className={item.className}>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="pointer-events-none relative z-10 h-80 w-80 object-cover rounded-2xl"
+              />
+            </DraggableCardBody>
+          ))}
+        </DraggableCardContainer>
 
-        </DraggableCardBody>
-      ))}
-    </DraggableCardContainer> 
+        <div className="flex justify-center">
+          <Button className="flex items-center bg-white text-black hover:bg-gray-200 transition-colors rounded-2xl p-3 font-bold cursor-pointer">
+            <WalletMinimal className="mr-2 h-4 w-4" /> Connect Wallet
+          </Button>
+        </div>
+      </div>
     </section>
   );
 }
