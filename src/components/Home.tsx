@@ -57,7 +57,7 @@ export function Home() {
       className="relative flex h-[800px] w-full flex-col items-center border border-dashed border-[#242424] max-w-screen-2xl mx-auto"
     >
       <div className="max-w-full py-10 text-3xl md:text-6xl font-bold tracking-tight text-white text-left pr-40">
-        The best way to grow is to <PointerHighlight>collaborate</PointerHighlight>
+      Instant Liquidity, Real  <PointerHighlight>Utility</PointerHighlight>
       </div>
       <div className="relative w-full max-w-screen-2xl">
         <DraggableCardContainer className="relative flex h-[500px] w-full items-center justify-center overflow-clip">
